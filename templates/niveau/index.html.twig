@@ -1,0 +1,65 @@
+
+{% extends 'base.html.twig' %}
+{% block body %}
+<div id="main">
+    <header class="mb-3">
+        <a href="#" class="burger-btn d-block d-xl-none">
+            <i class="bi bi-justify fs-3"></i>
+        </a>
+    </header>
+    <div class="page-heading">
+        <h3>NOS MEMOIRES </h3>
+    </div>
+    <div class="page-content">
+        <section class="row">
+            <div class="col-12 col-lg-9">
+                  {# {%  include "link/head.html.twig"  %} #}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                               <a class="btn btn-success" id="add-domaine" href="{{ path('app_niveau_new') }}"> Ajouter niveau </a>  
+                                 <h4 id='gest-domaine'>Gestion des niveaux </h4>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Libelle</th>
+                                            <th>actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for niveau in niveaux %}
+                                        <tr>
+                                            <td>{{ niveau.id }}</td>
+                                            <td>{{ niveau.libelle }}</td>
+                                            <td>
+                                              <div style="display: inline-block ; color:red;padding-bottom:4% ; vertical-align:top">{{ include('niveau/_delete_form.html.twig') }} </div> 
+                                                <a href="{{ path('app_niveau_edit', {'id': niveau.id}) }}"> <i class="fa fa-edit fa-2x"></i></a>
+                                                
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="3">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        
+          {%   include 'link/profile.html.twig'   %}    
+        </section>
+    </div>
+    
+</div>   
+    
+  
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+ <div id="main">
+    <header class="mb-3">
+        <a href="#" class="burger-btn d-block d-xl-none">
+            <i class="bi bi-justify fs-3"></i>
+        </a>
+    </header>
+ 
+    <div class="page-content">
+        <section class="row">
+            <div class="col-12 col-lg-9">
+                {# {%  include "link/head.html.twig"  %} #}
+                <div class="row">
+                    <div class="col-12 col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>LISTE DES DOCUMENTS </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                   <table class="table table-striped" id="table1">
+                                        <thead>
+                                            <tr>
+                                                <th>Theme</th>
+                                                <th>Date de soutenance  publication</th>
+                                                <th>Document Fichier</th>
+                                                <th style="text-align:center">actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for document in app.user.documents %}
+                                            <tr>
+                                               
+                                                <td>{{ document.titre }}</td>
+                                                <td>{{ document.dateSoutenance ? document.dateSoutenance|date('Y-m-d') : '' }}</td>
+                                                <td>{{ document.fichier }}</td>
+                                                <td>
+                                                    <a href="{{ path('app_document_show', {'id': document.id}) }}"><span class="badge bg-success">detail</span></a>
+                                                    <a href="{{ path('app_document_edit', {'id': document.id}) }}"><span class="badge bg-primary">editer</span></a>
+                                                    <div style="display: inline-block">{{ include('document/_delete_form.html.twig') }} </div> 
+                                                </td>
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="18">no records found</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%   include 'link/profile.html.twig'   %} 
+        </section>
+    </div>
+</div>      
+{% endblock %}

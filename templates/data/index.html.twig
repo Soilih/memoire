@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Data index{% endblock %}
+
+{% block body %}
+    <h1>Data index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pays</th>
+                <th>Adresse</th>
+                <th>Postal</th>
+                <th>Ville</th>
+                <th>Biographie</th>
+                <th>Diplome</th>
+                <th>DateNaissance</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for data in app.user.data %}
+            <tr>
+                <td>{{ data.id }}</td>
+                <td>{{ data.pays }}</td>
+                <td>{{ data.adresse }}</td>
+                <td>{{ data.postal }}</td>
+                <td>{{ data.ville }}</td>
+                <td>{{ data.biographie }}</td>
+                <td>{{ data.diplome }}</td>
+                <td>{{ data.DateNaissance ? data.DateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ data.photo }}</td>
+                <td>
+                    <a href="{{ path('app_data_show', {'id': data.id}) }}">show</a>
+                    <a href="{{ path('app_data_edit', {'id': data.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_data_new') }}">Create new</a>
+{% endblock %}

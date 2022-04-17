@@ -1,0 +1,83 @@
+
+{% extends 'base.html.twig' %}
+{% block body %}
+ <div id="main">
+    <header class="mb-3">
+        <a href="#" class="burger-btn d-block d-xl-none">
+            <i class="bi bi-justify fs-3"></i>
+        </a>
+    </header>
+    <div class="page-content">
+        <section class="row">
+            <div class="col-12 col-lg-9">
+                {# {%  include "link/head.html.twig"  %} #}
+                <div class="row">
+                    <div class="col-12 col-xl-12">
+                        <div class="card">
+                            <div class="card-header bg-primary">
+                                <h3 style="text-align:center; font-size:28px;color:white"> Description du document  </h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table bordered table-sm" style="width:100%">
+                                        <tbody>
+                                            <tr>
+                                                <th  style="width:30%"> Thème  </th>
+                                                <td>{{ document.titre }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Année de publication</th>
+                                                <td>{{ document.annePublication ? document.annePublication|date('Y-m-d') : '' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Date de soutenance</th>
+                                                <td>{{ document.dateSoutenance ? document.dateSoutenance|date('Y-m-d') : '' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Nombre de Jury</th>
+                                                <td>{{ document.nombreJury }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Université d'etude </th>
+                                                <td>{{ document.universite }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Resumé du livre </th>
+                                                <td>{{ document.resume }}</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th>Organisme d'accueil </th>
+                                                <td>{{ document.organisme }}</td>
+                                            </tr>
+                                            
+                                           
+                                            
+                                            <tr>
+                                                <th>Periode travail </th>
+                                                <td>{{ document.periode }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Nombre de page </th>
+                                                <td>{{ document.nombrepage }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Decision du jury </th>
+                                                <td>{{ document.apreciation }}</td>
+                                            </tr>
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%   include 'link/profile.html.twig'   %} 
+        </section>
+    </div>
+</div>    
+{% endblock %}
+

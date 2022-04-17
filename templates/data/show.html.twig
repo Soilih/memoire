@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Data{% endblock %}
+
+{% block body %}
+    <h1>Data</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ data.id }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ data.pays }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ data.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Postal</th>
+                <td>{{ data.postal }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ data.ville }}</td>
+            </tr>
+            <tr>
+                <th>Biographie</th>
+                <td>{{ data.biographie }}</td>
+            </tr>
+            <tr>
+                <th>Diplome</th>
+                <td>{{ data.diplome }}</td>
+            </tr>
+            <tr>
+                <th>DateNaissance</th>
+                <td>{{ data.DateNaissance ? data.DateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ data.photo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_data_index') }}">back to list</a>
+
+    <a href="{{ path('app_data_edit', {'id': data.id}) }}">edit</a>
+
+    {{ include('data/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,159 @@
+<div class="col-12 col-lg-3">
+                <div class="card">
+                    <div class="card-body py-4 px-5">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar avatar-xl">
+                                 <img src="{{ asset('assets/images/faces/1.jpg')}}"> 
+                            </div>
+                            <div class="ms-3 name">
+                                <h5 class="font-bold">{{ app.user.nom}} {{ app.user.prenom}}</h5>
+                                <h6 class="text-muted mb-0">{{app.user.email}}</h6>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Donneés personnelles</h4>
+                    </div>
+                    <div class="card-content pb-4">
+                        <div class="recent-message d-flex px-4 py-3">
+                            <div class="avatar avatar-lg">
+                                <img src="{{ asset('uploads/images/phone.jpg') }}">
+                            </div>
+                            <div class="name ms-4">
+                                <h5 class="mb-1">{{app.user.telephone}}</h5>
+                                
+                            </div>
+                        </div>
+                        <div class="recent-message d-flex px-4 py-3">
+                            <div class="avatar avatar-lg">
+                                <img src=" {{ asset('uploads/images/email.jpg') }}">
+                            </div>
+                            <div class="name ms-4">
+                                <h5 class="mb-1">{{ app.user.email }}</h5>
+                                <h6 class="text-muted mb-0"></h6>
+                            </div>
+                        </div>
+                        <div class="recent-message d-flex px-4 py-3">
+                            <div class="avatar avatar-lg">
+                                <img src=" {{ asset('uploads/images/sexe.png') }}">
+                            </div>
+                            <div class="name ms-4">
+                                <h5 class="mb-1">{{ app.user.sexe }}</h5>
+                                <h6 class="text-muted mb-0"></h6>
+                            </div>
+                        </div>
+                         {% if (app.user.data | length ) > 0  %}
+                            {% for dt in app.user.data %}
+                           
+                            <div class="recent-message d-flex px-4 py-3">
+                                <div class="avatar avatar-lg">
+                                <img src="{{ asset('uploads/images/pays.png') }}"> 
+                                </div>
+                                <div class="name ms-4">
+                                    <h5 class="mb-1"> {{dt.pays}} </h5> 
+                                </div>
+                            </div> 
+                                <div class="recent-message d-flex px-4 py-3">
+                                    <div class="avatar avatar-lg">
+                                        <img src="{{ asset('uploads/images/postal.png') }}">
+                                    </div>
+                                    <div class="name ms-4">
+                                        <h5 class="mb-1"> {{dt.postal }} </h5> 
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="recent-message d-flex px-4 py-3">
+                                    <div class="avatar avatar-lg">
+                                        <img src="{{ asset('uploads/images/VILLE.jpg') }}">
+                                    </div>
+                                    <div class="name ms-4">
+                                        <h5 class="mb-1"> {{ dt.ville}} </h5> 
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="recent-message d-flex px-4 py-3">
+                                    <div class="avatar avatar-lg">
+                                        <img src="{{ asset('uploads/images/ADRESSE.png') }}">
+                                    </div>
+                                    <div class="name ms-4">
+                                        <h5 class="mb-1"> {{dt.adresse}}</h5> 
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="recent-message d-flex px-4 py-3">
+                                    <div class="avatar avatar-lg">
+                                        <img src="{{ asset('uploads/images/NAI.png') }}">
+                                    </div>
+                                    <div class="name ms-4">
+                                        <h5 class="mb-1">  {{ dt.DateNaissance ? dt.DateNaissance|date('Y-m-d') : '' }} </h5> 
+                                        
+                                    </div>
+                                </div>
+                                <div class="recent-message d-flex px-4 py-3">
+                                    <div class="avatar avatar-lg">
+                                        <img src="{{ asset('uploads/images/diplome.jpg') }}">
+                                    </div>
+                                    <div class="name ms-4">
+                                        <h5 class="mb-1">  {{dt.diplome }}  </h5> 
+                                    </div>
+                                </div>
+                                <div class="recent-message d-flex px-4 py-3">
+                                    <div class="avatar avatar-lg">
+                                    <img src="{{ asset('uploads/images/bio.png') }}">
+                                    </div>
+                                    <div class="name ms-4">
+                                <h5 class="mb-1"> <a href="" data-bs-toggle="modal"
+                                 data-bs-target="#exampleModalCenter" class="btn btn-success" id="add-domaine"> consulter ta  biographie</a>    </h5> 
+                                        
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+                                        role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitle">Biographie 
+                                                </h5>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i data-feather="x"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {{dt.biographie |raw }}
+                                            </div>
+                                           <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">quitter</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="recent-message d-flex px-4 py-3">
+                                    <div class="avatar avatar-lg">
+                                        <img src=" {{ asset('uploads/images/dec.jpg') }}">
+                                    </div>
+                                     <div class="name ms-4">
+                                        <a href="{{ path("app_logout") }}"  class='btn btn-danger'> deconnexion  </a> 
+                                    </div>
+                                </div>
+                                  <a     class="btn  btn-xl btn-light-danger font-bold mt-1"  href="{{ path('app_data_edit', {'id': dt.id}) }}">edit profile </a>
+                                {% endfor %}
+
+                                 {% else  %}
+                                 <a href="{{ path("app_data_new") }}"  class='btn btn-block  btn-xl btn-light-danger font-bold mt-1'> Ajouter donneés personnelles  </a> 
+                                 {% endif %}
+                                
+                    </div>
+                </div>
+               
+            </div>
+
+

@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}memoire online {% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {%   include 'link/link1_css.html.twig'  %}
+    </head>
+    
+        {% block body %}
+        <div class="container">
+          <div class="row" style="padding-top:10%">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6" style="padding-left:20%">
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-content">
+                           
+                            </div>
+                            <div class="card-body">
+                             <h2 class="card-title" style="text-align:center ; font-size:24px ; color:white">Connexion </h2>
+                            <form method="post">
+                                    {% if error %}
+                                        
+                                        <div class="alert alert-danger"> les identifiants sont inccorectes .........</div> 
+                                    {% endif %}
+
+                                    {% if app.user %}
+                                        <div class="mb-3">
+                                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                        </div>
+                                    {% endif %}
+
+                                    <label for="inputEmail" id="email">Email</label>
+                                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                                    <br>
+                                    <label for="inputPassword" id="password">Password</label>
+                                    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                                    
+                                    <input type="hidden" name="_csrf_token"
+                                        value="{{ csrf_token('authenticate') }}" >
+                                    <br>
+                                    <div style="padding-left:27%">
+                                        <button class="btn btn-lg btn-primary" type="submit">
+                                    Se connecter
+                                    </button>
+                                    
+                                    </div>
+                                    
+                                </form>
+                                <div class="text-center mt-5 text-lg fs-4">
+                                    <p><a style="color:red" href="{{path('app_forgot_password_request')}}">Mot de passe oublié</a>.</p>
+                                    <br>
+                                    <p style="color:white">Vous n'avez pas de compte  ? <a class="btn btn-primary btn-lg" href="{{ path('app_register') }}" class="font-bold">Inscription </a></p>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+     {% endblock %}
+ {%   include 'link/link_js.html.twig'   %} 
+    </body>
+</html>

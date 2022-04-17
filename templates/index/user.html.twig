@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+ <div id="main">
+    <header class="mb-3">
+        <a href="#" class="burger-btn d-block d-xl-none">
+            <i class="bi bi-justify fs-3"></i>
+        </a>
+    </header>
+    
+    <div class="row">
+        <div class="col-6 col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body px-3 py-4-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="stats-icon purple">
+                                <i class="iconly-boldShow"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h6 class="text-muted font-semibold"> THESE  </h6>
+                            <h6 class="font-extrabold mb-0"></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body px-3 py-4-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="stats-icon blue">
+                                <i class="iconly-boldProfile"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h6 class="text-muted font-semibold">MEMOIRE DE FIN D'ETUDE </h6>
+                            <h6 class="font-extrabold mb-0">{{app.user.documents | length }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body px-3 py-4-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="stats-icon green">
+                                <i class="iconly-boldAdd-User"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h6 class="text-muted font-semibold">RAPPORT DE STAGE </h6>
+                            <h6 class="font-extrabold mb-0"> {{documents | length }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body px-3 py-4-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="stats-icon red">
+                                <i class="iconly-boldBookmark"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h6 class="text-muted font-semibold">MES DOCUMENTS </h6>
+                            <h6 class="font-extrabold mb-0">112</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content">
+    <section class="row">
+            <div class="col-12 col-lg-9">
+                {# {%  include "link/head.html.twig"  %} #}
+                <div class="row">
+                    <div class="col-12 col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>LISTE DES DOCUMENTS </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                   <table class="table table-striped" id="table1">
+                                        <thead>
+                                            <tr>
+                                                <th>Theme</th>
+                                                <th>Date de publication</th>
+                                                <th> domaine d'etude  </th>
+                                                <th> Organisme d'accueil  </th>
+                                                
+                                                <th>actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for document in documents %}
+                                            <tr>
+                                               
+                                                <td>{{ document.titre }}</td>
+                                                <td>{{ document.dateSoutenance ? document.dateSoutenance|date('Y-m-d') : '' }}</td>
+                                                <td>{{ document.domaine.libelle }}</td>
+                                                <td>{{ document.organisme }}</td>
+                                                <td>
+                                                    <a href="{{ asset('uploads/document/'~ document.fichier) }}"> telecharger || </a>
+                                                    <a href="{{ path('app_document_show', {'id': document.id}) }}">detail </a>
+                                                </td>
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="18">no records found</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+            {%   include 'link/profile.html.twig'   %}   
+        </section>
+    </div>
+</div>
+{% endblock %}

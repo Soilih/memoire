@@ -2,18 +2,179 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}memoire online {% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+        {%   include 'link/link1_css.html.twig'  %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="index.html"><img src="{{ asset('assets/images/logo/logo.png') }}" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+                        {% if   is_granted("ROLE_ADMIN")  %}
+                           <li
+                            class="sidebar-item active ">
+                            <a href="{{ path('app_index') }}" class='sidebar-link'>
+                                <i class=" fa fas fa-home"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                         
+                        <li
+                            class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                 <i class=" fa fas fa-users"></i>
+                                <span>Gestion des utilisateurs </span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{{ path('app_user_index') }}">Liste des utilisateus</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li
+                            class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                               
+                                <span>Gestion Niveau </span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{{ path('app_niveau_new') }}">ajouter niveau </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{{ path('app_niveau_index') }}">Liste des niveau </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li
+                            class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>Gestion domaine </span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{{ path('app_domaine_new') }}">ajouter un domaine </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{{ path('app_domaine_index') }}">Liste domaine </a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <li
+                            class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-pen-fill"></i>
+                               <span>Gestion des documents </span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{{ path('app_type_document_new') }}">Type de document </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="">Ajouter document  </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="">Liste des documents </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#">Status de document  </a>
+                                </li>
+                            </ul>
+                        </li>
+                         <li
+                            class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-bar-chart-fill"></i>
+                                <span>statistique </span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="ui-chart-chartjs.html">ChartJS</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="ui-chart-apexcharts.html">Apexcharts</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {%  else   %}
+                       <li
+                            class="sidebar-item active ">
+                            <a href="{{ path('user_Accueil') }}" class='sidebar-link'>
+                                <i class=" fa fas fa-home"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li
+                            class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-pen-fill"></i>
+                               <span>Gerer votre compte  </span>
+                            </a>
+                            <ul class="submenu ">
+                                {# {%  for dt in app.user.data   %}
+                                    {%  if dt.id > 0  %}
+                                    <li class="submenu-item ">
+                                         <a href="{{ path('app_data_edit', {'id': dt.id}) }}">mise à jour profile </a>
+                                    </li>
+                                    {%  else  %}
+                                    <li class="submenu-item ">
+                                        <a href="{{ path('app_data_new') }}"> Données personnelles  </a>
+                                    </li>
+                                    {%  endif   %}
+                                {% endfor %} #}
+                                <li class="submenu-item ">
+                                    <a href="#"> Informations personnelles     </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#"> Votre profile   </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#"> gerer Mot de passe    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                         <li
+                            class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-pen-fill"></i>
+                               <span>Gestion des documents </span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{{ path('app_document_new') }}">Ajouter un document   </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{{ path('app_document_index') }}"> Mes documents   </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                      {%   endif  %}
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   {% block body %}
+   {% endblock %}
+   {%   include 'link/link_js.html.twig'   %} 
     </body>
 </html>

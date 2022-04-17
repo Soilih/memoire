@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div id="main">
+    <header class="mb-3">
+        <a href="#" class="burger-btn d-block d-xl-none">
+            <i class="bi bi-justify fs-3"></i>
+        </a>
+    </header>
+    <div class="page-heading">
+        <h3>NOS MEMOIRES </h3>
+    </div>
+    <div class="page-content">
+        <section class="row">
+            <div class="col-12 col-lg-9">
+                  {# {%  include "link/head.html.twig"  %} #}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                               <a  data-bs-toggle="modal"
+                                 data-bs-target="#exampleModalCenter" class="btn btn-success" id="add-domaine" href="{{ path('app_domaine_new') }}"> Ajouter domaine </a>  
+                                 <h4 id='gest-domaine'>Gestion des domaine</h4>
+                            </div>
+                             <div class="card-body">
+                               <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                
+                                                <th>Libelle</th>
+                                                <th>Detail</th>
+                                                <th>actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for domaine in domaines %}
+                                            <tr>
+                                               
+                                                <td>{{ domaine.libelle }}</td>
+                                                <td>{{ domaine.detail|raw  }}</td>
+                                                <td>
+                                                    <div style="display: inline-block ; color:red;padding-bottom:4% ; vertical-align:top">{{ include('domaine/_delete_form.html.twig') }} </div> 
+                                                    <a href="{{ path('app_domaine_edit', {'id': domaine.id}) }}"> <i class="fa fa-edit fa-2x"></i></a>
+                                                   
+                                                </td>
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="4">no records found</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                   
+                            </div>
+                        </div>
+                        {#  form modal  #}
+                      
+
+
+
+                    </div>
+                </div>
+               
+            </div>
+        
+          {%   include 'link/profile.html.twig'   %}    
+        </section>
+    </div>
+    
+</div>   
+    
+  
+{% endblock %}
